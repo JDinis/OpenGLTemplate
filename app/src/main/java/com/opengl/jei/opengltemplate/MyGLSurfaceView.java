@@ -1,6 +1,7 @@
 package com.opengl.jei.opengltemplate;
 
 import android.content.Context;
+import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 
 public class MyGLSurfaceView extends GLSurfaceView {
@@ -23,7 +24,8 @@ public class MyGLSurfaceView extends GLSurfaceView {
          * Foi Escolhida uma configuração com uma cor RGBA8, 16 bits de depth sem estencile
          * suportando OpenGL ES 3.2 e retro-compatiblidade.
          */
-        setEGLConfigChooser(8, 8, 8, 0, 16, 0);
+        setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+        getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
         myRenderer = new MyGLRenderer();
 
