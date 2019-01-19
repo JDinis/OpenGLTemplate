@@ -52,7 +52,7 @@ class MyGLRenderer implements Renderer {
         float aspect = (float) width / height;
 
         // Definir a viewport (área de exibição) para cobrir toda a janela
-        GLES20.glViewport(0,0,width,height);
+        gl.glViewport(0,0,width,height);
 
         // Configurar projeção perspectiva, com a relação de aspecto correspondente ao viewport
         gl.glMatrixMode(GL10.GL_PROJECTION); // Selecionar projeção matriz

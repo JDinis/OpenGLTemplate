@@ -18,7 +18,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
         /**
         * Cria um contexto para o OpenGL ES 3.2
         **/
-        setEGLContextClientVersion(1);
+        setEGLContextClientVersion(1); // Depende da versão
 
         /**
          * Foi Escolhida uma configuração com uma cor RGBA8, 16 bits de depth sem estencile
