@@ -27,7 +27,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
         setEGLConfigChooser(8, 8, 8, 8, 16, 0);
         getHolder().setFormat(PixelFormat.TRANSLUCENT);
 
-        myRenderer = new MyGLRenderer();
+        myRenderer = new MyGLRenderer(context);
 
         /**
          * Indica qual o Renderer a usar que ira desenhar na GLSurfaceView
@@ -41,5 +41,10 @@ public class MyGLSurfaceView extends GLSurfaceView {
          * (actualizando a surface de x em x frames) a GLSurfaceView
          */
         setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+
+        // Solicitar o foco, caso contrário, toque não vai reagir
+        this.requestFocus();
+        this.setFocusableInTouchMode(true);
+
     }
 }

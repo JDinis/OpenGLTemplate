@@ -1,7 +1,9 @@
 package com.opengl.jei.opengltemplate;
 
-import android.opengl.GLES32;
+import android.content.Context;
+import android.opengl.GLES20;
 import android.opengl.GLSurfaceView.Renderer;
+import android.opengl.GLU;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -9,10 +11,16 @@ import javax.microedition.khronos.opengles.GL10;
 class MyGLRenderer implements Renderer {
 
     Piramide piramide;
+    private Context context;
+
+    public MyGLRenderer(Context context){
+        this.context = context;
+
+        piramide = new Piramide();
+    }
 
     /**
      * Quando a superficie for criada
-     * @param gl - não utilizado
      * @param config - configuração do opengl
      */
     @Override
@@ -21,34 +29,49 @@ class MyGLRenderer implements Renderer {
          * Atribui a cor a frame de background
          * neste caso a cor preta sem opacidade
          */
-        GLES32.glClearColor(0.0f,0.0f,0.0f, 1.0f);
-        piramide = new Piramide();
+        GLES20.glClearColor(0.0f,0.0f,0.0f, 1.0f);
+        GLES20.glClearDepthf(1.0f); // Definir profundidade para limpar
+        gl.glClearDepthf(1.0f); // Definir profundidade para limpar
+        gl.glEnable(GL10.GL_DEPTH_TEST); // Permite profundidade do buffer e remove a superfície
+        gl.glDepthFunc(GL10.GL_LEQUAL); // Teste de profundidade a fazer
+        gl.glHint(GL10.GL_PERSPECTIVE_CORRECTION_HINT, GL10.GL_NICEST); // Boa perspetiva de visualização
+        gl.glShadeModel(GL10.GL_SMOOTH); // Ativar sombreamento suave de cor
+        gl.glDisable(GL10.GL_DITHER); //Desativar composição das cores para melhorar a performance
     }
 
     /**
      * Quando a superficie for alterada
-     * @param gl - não utilizado
      * @param width - Largura do ViewPort
      * @param height - Altura do ViewPort
      */
     @Override
     public void onSurfaceChanged(GL10 gl, int width, int height) {
-        /**
-         * x && y - Coordenadas iniciais do ViewPort
-         */
-        GLES32.glViewport(0,0,width,height);
+        if (height == 0)
+            height = 1; // Previnir a divisão por 0
+        float aspect = (float) width / height;
+
+        // Definir a viewport (área de exibição) para cobrir toda a janela
+        GLES20.glViewport(0,0,width,height);
+
+        // Configurar projeção perspectiva, com a relação de aspecto correspondente ao viewport
+        gl.glMatrixMode(GL10.GL_PROJECTION); // Selecionar projeção matriz
+        gl.glLoadIdentity(); // Reset projeção matriz
+
+        GLU.gluPerspective(gl, 45, aspect, 0.1f, 100.f); // Usar Projeção perspetiva
+
+        // Selecionar matriz model-view
+        gl.glMatrixMode(GL10.GL_MODELVIEW);
+        gl.glLoadIdentity(); // Reset
     }
 
     /**
      * Quando uma frame estiver para ser desenhada
-     * @param gl - não utilizado
      */
     @Override
     public void onDrawFrame(GL10 gl) {
         /**
          * Redesenha a cor do background
          */
-        GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT);
-        piramide.draw(gl);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT |GL10.GL_DEPTH_BUFFER_BIT);
     }
 }

@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_main);
+
         // Criação de uma instancia da GLSurfaceView e atribuir
         // ao ContentView desta actividade.
         myGLView = new MyGLSurfaceView(this);
