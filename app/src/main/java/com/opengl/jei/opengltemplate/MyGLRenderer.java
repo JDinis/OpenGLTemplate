@@ -68,16 +68,5 @@ class MyGLRenderer implements Renderer {
      */
     @Override
     public void onDrawFrame(GL10 gl) {
-        /**
-         * Redesenha a cor do background
-         */
-        gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
-
-        // -- Renderizar a Piramide --
-        gl.glLoadIdentity(); // Reiniciar a matriz model-view
-        gl.glTranslatef(0f, -0.9f, -6f); // Tanslação para a esquerda, para baixo e no ecrã de forma a centrar em baixo
-        gl.glRotatef(anguloPiramide++, 0f, 1.0f, 0f); // Rotação de forma continuada do eixo dos y
-        gl.glScalef(0.5f,0.5f,0.5f); // Encolher a piramide
-        piramide.draw(gl); // Desenhar a piramide
     }
 }
