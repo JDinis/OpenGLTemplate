@@ -8,6 +8,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 class MyGLRenderer implements Renderer {
 
+    Piramide piramide;
+
     /**
      * Quando a superficie for criada
      * @param gl - não utilizado
@@ -20,6 +22,7 @@ class MyGLRenderer implements Renderer {
          * neste caso a cor preta sem opacidade
          */
         GLES32.glClearColor(0.0f,0.0f,0.0f, 1.0f);
+        piramide = new Piramide();
     }
 
     /**
@@ -46,5 +49,6 @@ class MyGLRenderer implements Renderer {
          * Redesenha a cor do background
          */
         GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT);
+        piramide.draw(gl);
     }
 }
