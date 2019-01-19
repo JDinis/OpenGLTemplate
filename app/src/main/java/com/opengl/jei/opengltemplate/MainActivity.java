@@ -3,6 +3,7 @@ package com.opengl.jei.opengltemplate;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,5 +34,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         myGLView.onResume();
     }
+    
+    // Manipular o evento de toque
+    @Override
+    public boolean onTouchEvent(final MotionEvent evt) {
 
+        return true;  // Evento manipulado
+    }
 }
