@@ -41,10 +41,5 @@ public class MyGLSurfaceView extends GLSurfaceView {
          * (actualizando a surface de x em x frames) a GLSurfaceView
          */
         setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
-
-        // Solicitar o foco, caso contrário, toque não vai reagir
-        this.requestFocus();
-        this.setFocusableInTouchMode(true);
-
     }
 }

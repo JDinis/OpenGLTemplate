@@ -73,15 +73,13 @@ class MyGLRenderer implements Renderer {
         /**
          * Redesenha a cor do background
          */
-        // Limpar cor e profundidade dos buffers usando o valor para esse efeito
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
 
-        // ********** 1. Cubo e Pirâmide (cor e rotação) **********
         // -- Renderizar a Piramide --
         gl.glLoadIdentity(); // Reiniciar a matriz model-view
         gl.glTranslatef(0f, -0.9f, -6f); // Tanslação para a esquerda, para baixo e no ecrã
-        gl.glRotatef(anguloPiramide++, 0f, 1.0f, 0f); // Rotação
-        gl.glScalef(0.5f,0.5f,0.5f);
+        gl.glRotatef(anguloPiramide++, 0f, 1.0f, 0f); //Rotação em relação ao eixo dos y
+        gl.glScalef(0.5f,0.5f,0.5f); // Encolhe a piramide
         piramide.draw(gl); // Desenhar a piramide
     }
 }

@@ -34,11 +34,4 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         myGLView.onResume();
     }
-    
-    // Manipular o evento de toque
-    @Override
-    public boolean onTouchEvent(final MotionEvent evt) {
-
-        return true;  // Evento manipulado
-    }
 }

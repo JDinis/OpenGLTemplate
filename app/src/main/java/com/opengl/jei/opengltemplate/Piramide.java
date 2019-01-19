@@ -38,7 +38,7 @@ public class Piramide {
 
     // Construtor - Configura os buffers
     public Piramide() {
-// Configuração do buffer vertex-array. Vertices em float. Um float tem 4 bytes
+        // Configuração do buffer vertex-array. Vertices em float. Um float tem 4 bytes
         ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length * 4);
         vbb.order(ByteOrder.nativeOrder());
         vertexBuffer = vbb.asFloatBuffer(); // Converte de byte para float
