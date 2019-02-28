@@ -30,8 +30,7 @@ class MyGLRenderer implements Renderer {
          * Atribui a cor a frame de background
          * neste caso a cor preta sem opacidade
          */
-        GLES20.glClearColor(0.0f,0.0f,0.0f, 1.0f);
-        GLES20.glClearDepthf(1.0f); // Definir profundidade para limpar
+        gl.glClearColor(0.0f,0.0f,0.0f, 1.0f);
         gl.glClearDepthf(1.0f); // Definir profundidade para limpar
         gl.glEnable(GL10.GL_DEPTH_TEST); // Permite profundidade do buffer e remove a superfície
         gl.glDepthFunc(GL10.GL_LEQUAL); // Teste de profundidade a fazer
@@ -57,7 +56,6 @@ class MyGLRenderer implements Renderer {
         // Configurar projeção perspectiva, com a relação de aspecto correspondente ao viewport
         gl.glMatrixMode(GL10.GL_PROJECTION); // Selecionar projeção matriz
         gl.glLoadIdentity(); // Reset projeção matriz
-
         GLU.gluPerspective(gl, 45, aspect, 0.1f, 100.f); // Usar Projeção perspetiva
 
         // Selecionar matriz model-view

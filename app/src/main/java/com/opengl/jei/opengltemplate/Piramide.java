@@ -56,22 +56,9 @@ public class Piramide {
         indexBuffer = ByteBuffer.allocateDirect(indices.length);
         indexBuffer.put(indices);
         indexBuffer.position(0);
-
     }
 
     // Desenha a pirâmide
     public void draw(GL10 gl) {
-        gl.glFrontFace(GL10.GL_CCW);  // Face frontal na orientação anti-horário
-
-        // Ativar os arrays e definir seus buffers
-        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-        gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertexBuffer);
-        gl.glEnableClientState(GL10.GL_COLOR_ARRAY);
-        gl.glColorPointer(4, GL10.GL_FLOAT, 0, colorBuffer);
-
-        gl.glDrawElements(GL10.GL_TRIANGLES, indices.length, GL10.GL_UNSIGNED_BYTE, indexBuffer);
-
-        gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
-        gl.glDisableClientState(GL10.GL_COLOR_ARRAY);
     }
 }
